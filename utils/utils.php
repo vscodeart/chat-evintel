@@ -1507,4 +1507,56 @@ function addToMailgunList($email, $name, $data){
 }
 
 
+
+function uploadFile($files){
+
+    $uploaded_file_and_image = array();
+    $mime_types = array(
+        'pdf' => array('application/pdf'),
+    );
+
+    if ($files['error'] == 0) {
+
+        $file_path = $files['tmp_name'];
+
+        $file_type_info = finfo_open(FILEINFO_MIME_TYPE);
+        $file_type = finfo_file($file_type_info, $file_path);
+
+        $ext_list = array();
+        foreach ($mime_types as $key => $value) {
+            if(in_array($file_type, $value)){
+                array_push($ext_list, $key);
+            }
+        }
+        // var_dump($ext_list);
+        $enable_files = str_replace('.', '', array_map('trim', explode(",",SETTINGS['enable_file_list'])));
+
+        if(!empty(array_intersect($ext_list, $enable_files))){
+
+            $extension = pathinfo($files['name'], PATHINFO_EXTENSION);
+            $file_name = trim(substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'),1,32));
+            $original_file_name = pathinfo($files['name'], PATHINFO_FILENAME);
+            $original_file_name = preg_replace( '/[\W]/', '', $original_file_name);
+            if (empty($original_file_name)) {
+                $original_file_name = 'file';
+            }
+            $tmp_name = $files['tmp_name'];
+            $size = $files['size'];
+            $full_file_name = $original_file_name.'.'.$file_name.'.'.$extension;
+
+            $return_array = array();
+            $return_array['name'] = $full_file_name;
+            $return_array['extenstion'] = $extension;
+            $return_array['size'] = app('chat')->humanFileSize($size);
+            move_uploaded_file($tmp_name, "media/chats/files/".$full_file_name);
+            return $full_file_name;
+        }
+return false;
+
+    }else{
+        // file size error
+    }
+}
+
+
 ?>

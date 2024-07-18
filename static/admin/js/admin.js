@@ -1565,6 +1565,38 @@ $(document).ready(function() {
         });
     });
 
+
+
+    $(document).on("click", '.room-agendafile-remove', function() {
+        var room_id = $('#room_id').val();
+        $.ajax({
+            url: "{{ url('ajax-chatroom-remove-agenda-file') }}",
+            data: {
+                room_id : room_id,
+                csrftoken: '{{ csrf_token_ajax() }}'
+            },
+            type: "POST",
+            success: function(data) {
+                if(data.success){
+
+                    toastr.success(
+                        data.message, '',
+                        {
+                            timeOut: 1000,
+                            fadeOut: 1000,
+                            onHidden: function () {
+                                window.location.reload();
+                            }
+                        }
+                    );
+                }else{
+                    toastr.error(data.message);
+                }
+            }
+        });
+    });
+
+
     // remove setting
     $(document).on("click", '.remove-setting', function(e) {
         e.preventDefault();

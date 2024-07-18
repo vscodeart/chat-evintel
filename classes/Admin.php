@@ -269,6 +269,34 @@ class Admin
                             }
                         }
 
+
+
+
+                        if(array_key_exists("upload_agenda", $FILES)){
+
+                            if($FILES['upload_agenda']['name']){
+
+
+                                $upload = uploadFile($FILES['upload_agenda']);
+
+
+                                if($upload){
+                                    if($room_data['upload_agenda']){
+                                        $old_file = BASE_PATH . 'media/chats/files/'.$room_data['upload_agenda'];
+                                        if(file_exists($old_file)) {
+                                            unlink($old_file);
+                                        }
+                                    }
+                                    app('db')->where ('id', $room_id);
+                                    app('db')->update('chat_rooms', Array("upload_agenda" => $upload));
+                                }
+                            }
+                        }
+
+
+
+
+
                         if($image_status){
                             $update_room_return = array('true', 'Successfully Updated!', $room_data);
                         }else{

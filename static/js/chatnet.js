@@ -584,6 +584,10 @@ function getActiveInfo(user_show=false, load_panel=true){
                 $(".active-group-cover").attr("src", data.info.cover_url);
                 $('.active-group-mute').attr('data-is-muted', data.info.is_muted);
                 $('.chat-title, .active-group-name').html(data.info.room_data.name);
+                if(data.info.room_data.upload_agenda != null){
+                    $('#getagenda, .active-group-name').html("<a href='{{MEDIA_URL}}/chats/files/"+data.info.room_data.upload_agenda+"' target='_blank'>Get Agenda</a>");
+                }
+
                 if (data.info.slug == 'general') {
                     $('.chat-slug').html("#"+data.info.room_data.slug);
                 }else{
@@ -3770,6 +3774,7 @@ $( document ).ready(function() {
                     async: false
                 }).responseText);
                 $('.chat-title').html(room_info.data.name);
+
                 if (room_info.data.slug == 'general') {
                     $('.chat-slug').html("#"+room_info.data.slug);
                 }else{

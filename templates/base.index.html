@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no shrink-to-fit=no">
     <title>{{ title ? title : SETTINGS.site_name }}</title>
     <meta name="description" content="{{ page.meta_description ? page.meta_description : SETTINGS.site_description }} " />
+    <meta property="og:title" content="Evintel Chat" />
+    <meta property="og:description" content="Evintel chat" />
     {% if  SETTINGS.default_ogimage %}
     <meta property="og:image" content="{{MEDIA_URL}}/settings/{{SETTINGS.default_ogimage}}" />
     {% else %}
@@ -89,7 +91,7 @@
                         {% else %}
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto mr-lg-5">
-                                <li class="nav-item "><a class="nav-link" {% if SETTINGS.sso_enabled and SETTINGS.sso_home_url %}target="_parent"{% endif %} href="{% if SETTINGS.sso_enabled and SETTINGS.sso_home_url %} {{ SETTINGS.sso_home_url }} {% else %} {{ url('index') }} {% endif %}">{{ _('Home') }}</a></li>
+<!--                                <li class="nav-item "><a class="nav-link" {% if SETTINGS.sso_enabled and SETTINGS.sso_home_url %}target="_parent"{% endif %} href="{% if SETTINGS.sso_enabled and SETTINGS.sso_home_url %} {{ SETTINGS.sso_home_url }} {% else %} {{ url('index') }} {% endif %}">{{ _('Home') }}</a></li>-->
                                 {% if SETTINGS.enable_about %}
                                 <li class="nav-item "><a class="nav-link" href="{{ url('about') }}">{{ _('About') }}</a></li>
                                 {% endif %}
@@ -154,7 +156,9 @@
             <footer class="footer pt-3 pb-3  bg-light footer-light">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-md-6 small">{% if SETTINGS.copyright %}{{SETTINGS.copyright|escape}}{% else %} Copyright &#xA9; <a href="http://chatnet.oncodes.com/" target="_blank"> Oncodes 2020 </a> {% endif %} </div>
+                        <div class="col-md-6 small">
+                            <img width="85" src="{{STATIC_URL}}/img/logo-dark.svg" alt="Powered By Codeart">
+                        </div>
                         <div class="col-md-6 text-md-right small">
                             {% if SETTINGS.enable_about %}
                             <a href="{{ url('about') }}">{{ _('About Us') }}</a>

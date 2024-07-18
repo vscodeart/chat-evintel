@@ -1446,6 +1446,21 @@ class ajaxController{
         }
     }
 
+    //remove agenda file
+    public function chatroom_remove_agenda_file(){
+
+        $post_data = app('request')->body;
+      
+        $privilege_room_user = app('admin')->checkUserRoomPrivilege(app('auth')->user()['id'], $post_data['room_id']);
+        if($privilege_room_user){
+            app('db')->where ('id', $post_data['room_id']);
+            app('db')->update('chat_rooms', array('upload_agenda' => null));
+            return json_response(["success" => 'true', "message" => __("Agenda file was removed.")]);
+        }else{
+            return json_response(["success" => 'false', "message" => __('Access revoked')]);
+        }
+    }
+
     // load more chats when scrolling up
     public function load_more_chats(){
         $data = array();

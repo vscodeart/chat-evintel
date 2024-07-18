@@ -143,6 +143,7 @@ if (file_exists(BASE_PATH.'config/settings.php')) {
     $route->any('ajax/chatroom-user-restriction', 'App\ajaxController@chatroom_user_restriction')->as('ajax-chatroom-user-restriction');
     $route->any('ajax/chatroom-user-mod', 'App\ajaxController@chatroom_user_mod')->as('ajax-chatroom-user-mod');
     $route->any('ajax/chatroom-remove-bg', 'App\ajaxController@chatroom_remove_bg')->as('ajax-chatroom-remove-bg');
+    $route->any('ajax/chatroom-remove-agenda-file', 'App\ajaxController@chatroom_remove_agenda_file')->as('ajax-chatroom-remove-agenda-file');
     $route->any('ajax/load-more-chats', 'App\ajaxController@load_more_chats')->as('ajax-load-more-chats');
     $route->any('ajax/ajax-chatroom-search', 'App\ajaxController@chatroom_search')->as('ajax-chatroom-search');
     $route->any('ajax/ajax-chatroom-load-more', 'App\ajaxController@chatroom_load_more')->as('ajax-chatroom-load-more');

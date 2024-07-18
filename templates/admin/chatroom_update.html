@@ -123,25 +123,25 @@
                             </label>
                         </div>
 
-                        <label class="col-sm-4 col-form-label" for="allow_guest">
-                            {{_("Allow Guest Chats",2)}}
-                        </label>
+<!--                        <label class="col-sm-4 col-form-label" for="allow_guest">-->
+<!--                            {{_("Allow Guest Chats",2)}}-->
+<!--                        </label>-->
 
-                        <div class="col-sm-8">
-                            {% if SETTINGS.guest_mode %}
-                                <label class="switch">
-                                    <input type="checkbox" name="allowed_users[]" id="allow_guest" value="3"
-                                        {% if 3 in chat_room.allowed_users %} checked {% endif %}>
-                                        <span class="slider round"></span>
-                                </label>
-                            {% else %}    
-                                <label class="switch">
-                                    <input type="checkbox" disabled />
-                                    <span class="slider round"></span>
-                                </label>
-                                <small>{{_("Allow Guest Mode First in Registration Settings",2)}}</small>
-                            {% endif %}
-                        </div>
+<!--                        <div class="col-sm-8">-->
+<!--                            {% if SETTINGS.guest_mode %}-->
+<!--                                <label class="switch">-->
+<!--                                    <input type="checkbox" name="allowed_users[]" id="allow_guest" value="3"-->
+<!--                                        {% if 3 in chat_room.allowed_users %} checked {% endif %}>-->
+<!--                                        <span class="slider round"></span>-->
+<!--                                </label>-->
+<!--                            {% else %}    -->
+<!--                                <label class="switch">-->
+<!--                                    <input type="checkbox" disabled />-->
+<!--                                    <span class="slider round"></span>-->
+<!--                                </label>-->
+<!--                                <small>{{_("Allow Guest Mode First in Registration Settings",2)}}</small>-->
+<!--                            {% endif %}-->
+<!--                        </div>-->
                         
                     </div>
                     <hr>
@@ -170,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label" for="show_background">
                             {{_("Show Background")}}
@@ -178,13 +178,13 @@
                         <div class="col-sm-8">
                             <label class="switch">
                                 <input type="checkbox" name="show_background" id="show_background"
-                                    {% if chat_room %}
-                                        {% if chat_room.show_background %}
-                                            checked
-                                        {% endif %}
-                                    {% else %}
-                                        checked
-                                    {% endif %}>
+                                       {% if chat_room %}
+                                       {% if chat_room.show_background %}
+                                       checked
+                                       {% endif %}
+                                       {% else %}
+                                       checked
+                                       {% endif %}>
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -192,18 +192,35 @@
                         <div class="col-sm-6">
                             <input type="file" class="form-control-file upload-background-image" id="background_image" name="background_image" value="">
                         </div>
+
                         <div class="col-2">
                             <div class="room-bgimage-preview">
                                 {% if chat_room.background_image %}
-                                    <img class="img-responsive" height="100%" src="{{MEDIA_URL}}/chatrooms/{{chat_room.background_image}}"  alt="">
-                                {% else %}    
-                                    <img class="img-responsive" height="100%" src="{{STATIC_URL}}/img/chatbg.png"  alt="">
+                                <img class="img-responsive" height="100%" src="{{MEDIA_URL}}/chatrooms/{{chat_room.background_image}}"  alt="">
+                                {% else %}
+                                <img class="img-responsive" height="100%" src="{{STATIC_URL}}/img/chatbg.png"  alt="">
                                 {% endif %}
                             </div>
                             <a href="javascript:void(0)" class="btn btn-sm btn-danger room-bgimage-remove"><i class="fas fa-times"></i></a>
                         </div>
                     </div>
-                    
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label" for="slug">{{_("Upload Agenda")}}</label>
+                        <div class="col-sm-6">
+                            <input type="file" class="form-control-file upload-background-image" id="upload_agenda" name="upload_agenda" value="">
+                        </div>
+
+                        <div class="col-2">
+                            <div class="">
+                                {% if chat_room.upload_agenda %}
+                                <a href="{{MEDIA_URL}}/chats/files/{{chat_room.upload_agenda}}" target="_blank">Show file</a>
+                                {% endif %}
+                            </div>
+                            {% if chat_room.upload_agenda %}
+                            <a style="position: absolute; right: 24px; top: 2px; height: 20px; font-size: 9px;" href="javascript:void(0)" class="btn btn-sm btn-danger room-agendafile-remove">Remove file</a>
+                            {% endif %}
+                        </div>
+                    </div>
                     <hr>
 
                     <div class="form-group row">
@@ -228,18 +245,18 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label" for="ad_chat_left_bar">{{_("Left sidebar ad",1)}}</label>
-                        <div class="col-sm-8">
-                            <textarea name="ad_chat_left_bar" id="ad_chat_left_bar" class="form-control" rows="5" cols="80">{{chat_room.ad_chat_left_bar|raw}}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label" for="ad_chat_right_bar">{{_("Right sidebar ad",1)}}</label>
-                        <div class="col-sm-8">
-                            <textarea name="ad_chat_right_bar" id="ad_chat_right_bar" class="form-control" rows="5" cols="80">{{chat_room.ad_chat_right_bar|raw}}</textarea>
-                        </div>
-                    </div>
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-sm-4 col-form-label" for="ad_chat_left_bar">{{_("Left sidebar ad",1)}}</label>-->
+<!--                        <div class="col-sm-8">-->
+<!--                            <textarea name="ad_chat_left_bar" id="ad_chat_left_bar" class="form-control" rows="5" cols="80">{{chat_room.ad_chat_left_bar|raw}}</textarea>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label class="col-sm-4 col-form-label" for="ad_chat_right_bar">{{_("Right sidebar ad",1)}}</label>-->
+<!--                        <div class="col-sm-8">-->
+<!--                            <textarea name="ad_chat_right_bar" id="ad_chat_right_bar" class="form-control" rows="5" cols="80">{{chat_room.ad_chat_right_bar|raw}}</textarea>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <hr>
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label" for="hide_chat_list">{{_("Disable user list & direct messages",2)}}</label>

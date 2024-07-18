@@ -534,7 +534,7 @@ $(document).on("click", '.room-bgimage-remove', function() {
     });
 });
 
-
+ 
 $(document).on('change', '#is_protected', function() {
     if(this.checked) {
         $('.pin-area').show();

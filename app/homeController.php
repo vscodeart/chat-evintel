@@ -923,7 +923,7 @@ class homeController{
         if (!empty(SETTINGS['pwa_icon'])) {
             $data['pwa_icon'] = MEDIA_URL."/"."settings/".SETTINGS['pwa_icon'];
         }else{
-            $data['pwa_icon'] = URL."static/img/chatnet_app_192.png";
+            $data['pwa_icon'] = URL."static/img/evintel.png";
         }
 
         header("Content-Type: application/json");
